@@ -63,27 +63,22 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             case R.id.btnRegister:
                 progressBar.setVisibility(View.VISIBLE);
 
-                Intent i = new Intent(getApplicationContext(), Dashboard.class);
-                startActivity(i);
-                finish();
+                if (nama.getText().toString().equals("")
+                        && user.getText().toString().equals("")
+                        && pass.getText().toString().equals("")
+                        && phone.getText().toString().equals("")) {
 
+                    progressBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getApplicationContext(), "Data form tidak valid", Toast.LENGTH_SHORT).show();
 
-//                if (nama.getText().toString().equals("")
-//                        && user.getText().toString().equals("")
-//                        && pass.getText().toString().equals("")
-//                        && phone.getText().toString().equals("")) {
-//
-//                    progressBar.setVisibility(View.INVISIBLE);
-//                    Toast.makeText(getApplicationContext(), "Data form tidak valid", Toast.LENGTH_SHORT).show();
-//
-//                }else {
-//                    btnLogin.setEnabled(false);
-//                    btnRegister.setEnabled(false);
-//                    registerUser(nama.getText().toString(),
-//                            user.getText().toString().replace(" ", ""),
-//                            pass.getText().toString(),
-//                            phone.getText().toString().replace(" ", ""));
-//                }
+                }else {
+                    btnLogin.setEnabled(false);
+                    btnRegister.setEnabled(false);
+                    registerUser(nama.getText().toString(),
+                            user.getText().toString().replace(" ", ""),
+                            pass.getText().toString(),
+                            phone.getText().toString().replace(" ", ""));
+                }
 
                 break;
 
