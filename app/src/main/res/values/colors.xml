@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#cccccc</color>
+    <color name="textColorAmpay">#c4c2c2</color>
+    <color name="bgDashboard">#e9e4ea</color>
+    <color name="textDashboard">#d22b0431</color>
+</resources>
