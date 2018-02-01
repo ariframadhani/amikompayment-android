@@ -1,2 +1,2 @@
-# amikompayment-android
-Amikompayment Mobile App with API 
+# Amikom Payment
+Amikom Payment Mobile App with API 
