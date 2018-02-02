@@ -1,6 +1,7 @@
 package com.example.fsd.amikompayment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -64,16 +65,15 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 progressBar.setVisibility(View.VISIBLE);
 
                 if (nama.getText().toString().equals("")
-                        && user.getText().toString().equals("")
-                        && pass.getText().toString().equals("")
-                        && phone.getText().toString().equals("")) {
+                        || user.getText().toString().equals("")
+                        || pass.getText().toString().equals("")
+                        || phone.getText().toString().equals("")) {
 
                     progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(getApplicationContext(), "Data form tidak valid", Toast.LENGTH_SHORT).show();
 
                 }else {
-                    btnLogin.setEnabled(false);
-                    btnRegister.setEnabled(false);
+                    buttonControl(false);
                     registerUser(nama.getText().toString(),
                             user.getText().toString().replace(" ", ""),
                             pass.getText().toString(),
@@ -92,14 +92,20 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     private void registerUser(String nama_lengkap, String username, String password, String tlp){
         mApiService.RegisterUser(nama_lengkap,username,password,tlp)
-                .enqueue(new Callback<ResponseBody>() {
+                .enqueue(new Callback<User>() {
                     @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    public void onResponse(Call<User> call, Response<User> response) {
                         Log.d("response", "code = " + response.toString());
                         progressBar.setVisibility(View.INVISIBLE);
 
                         if (response.isSuccessful()){
-                            Toast.makeText(getApplicationContext(), "Register Succeed", Toast.LENGTH_SHORT).show();
+
+                            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("api_token", response.body().getData().getApi_token());
+                            editor.apply();
+
+                            Toast.makeText(getApplicationContext(), "Welcome "+response.body().getData().getNamaLengkap(), Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), Dashboard.class);
                             startActivity(i);
                             finish();
@@ -110,12 +116,35 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                             try {
                                 Errors error = errorConverter.convert(response.errorBody());
 
-                                String errUsername = error.getErrors().getUsername().toString();
-                                errUsername = errUsername.replaceAll("\\[","").replaceAll("\\]","");
+                                if (error.getErrors().getNama() != null){
+                                    String errNama = error.getErrors().getNama().toString();
+                                    errNama = errNama.replaceAll("\\[","").replaceAll("\\]","");
 
-                                if (!error.getErrors().getUsername().equals(null)){
+                                    buttonControl(true);
+                                    Toast.makeText(getApplicationContext(), errNama, Toast.LENGTH_SHORT).show();
+
+                                }else if (error.getErrors().getUsername() != null){
+                                    String errUsername = error.getErrors().getUsername().toString();
+                                    errUsername = errUsername.replaceAll("\\[","").replaceAll("\\]","");
+
+                                    buttonControl(true);
                                     Toast.makeText(getApplicationContext(), errUsername, Toast.LENGTH_SHORT).show();
+
+                                }else if(error.getErrors().getPassword() != null){
+                                    String errPassword = error.getErrors().getPassword().toString();
+                                    errPassword = errPassword.replaceAll("\\[","").replaceAll("\\]","");
+
+                                    buttonControl(true);
+                                    Toast.makeText(getApplicationContext(), errPassword, Toast.LENGTH_SHORT).show();
+
+                                }else if(error.getErrors().getPhone() != null){
+                                    String errPhone = error.getErrors().getPhone().toString();
+                                    errPhone = errPhone.replaceAll("\\[","").replaceAll("\\]","");
+
+                                    buttonControl(true);
+                                    Toast.makeText(getApplicationContext(), errPhone, Toast.LENGTH_SHORT).show();
                                 }
+
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -124,12 +153,16 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        btnLogin.setEnabled(true);
-                        btnRegister.setEnabled(true);
+                    public void onFailure(Call<User> call, Throwable t) {
+                        buttonControl(true);
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(getApplicationContext(), "Couldn't reach the server", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public void buttonControl(Boolean status){
+        btnLogin.setEnabled(status);
+        btnRegister.setEnabled(status);
     }
 }

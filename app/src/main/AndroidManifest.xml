@@ -26,7 +26,20 @@
         <activity android:name=".Homepage" />
         <activity android:name=".History" />
         <activity android:name=".Help" />
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".Profile" />
+        <activity
+            android:name=".Pembayaran"
+            android:parentActivityName=".Dashboard"
+            android:theme="@style/onToolbar" />
+        <activity
+            android:name=".Deposit"
+            android:parentActivityName=".Dashboard"
+            android:theme="@style/onToolbar" />
+        <activity
+            android:name=".PembayaranUKM"
+            android:parentActivityName=".Pembayaran"
+            android:theme="@style/onToolbar" />
+        <activity android:name=".Notification"></activity>
     </application>
 
 </manifest>

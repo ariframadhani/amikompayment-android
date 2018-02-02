@@ -99,7 +99,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         }else {
                             btnLogin.setEnabled(true);
                             btnRegister.setEnabled(true);
-                            Toast.makeText(getApplicationContext(), "Authentifikasi gagal", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Username dan password salah", Toast.LENGTH_SHORT).show();
                         }
 
                     }

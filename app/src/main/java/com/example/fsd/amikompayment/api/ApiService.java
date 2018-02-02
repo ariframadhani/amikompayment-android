@@ -1,5 +1,6 @@
 package com.example.fsd.amikompayment.api;
 
+import com.example.fsd.amikompayment.deposit.Deposit;
 import com.example.fsd.amikompayment.user.Data;
 import com.example.fsd.amikompayment.user.User;
 
@@ -26,7 +27,7 @@ public interface ApiService {
     @Headers("Accept: application/json")
     @POST("register")
     @FormUrlEncoded
-    Call<ResponseBody> RegisterUser(@Field("nama") String nama,
+    Call<User> RegisterUser(@Field("nama") String nama,
                                     @Field("username") String username,
                                     @Field("password") String password,
                                     @Field("phone") String phone);
@@ -38,5 +39,12 @@ public interface ApiService {
     @Headers("Accept: application/json")
     @POST("logout")
     Call<User> UserLogout (@Header("Authorization") String token);
+
+    @Headers("Accept: application/json")
+    @POST("deposit")
+    @FormUrlEncoded
+    Call<Deposit> sendDeposit (@Header("Authorization") String token,
+                               @Field("nominal") Integer nominal,
+                               @Field("password") String password);
 
 }
