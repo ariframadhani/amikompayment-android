@@ -44,4 +44,9 @@ class User extends Authenticatable
       return $this->hasMany(TransactBarang::class, 'username', 'username');
     }
 
+    public function deposit()
+    {
+      return $this->hasMany(User::class, 'username', 'username');
+    }
+
 }
