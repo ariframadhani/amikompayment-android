@@ -168,19 +168,19 @@ public class Dashboard extends AppCompatActivity {
             return 4;
         }
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Home";
-                case 1:
-                    return "History";
-                case 2:
-                    return "Help";
-                case 3:
-                    return "Profile";
-            }
-            return null;
-        }
+//        @Override
+//        public CharSequence getPageTitle(int position) {
+//            switch (position) {
+//                case 0:
+//                    return "";
+//                case 1:
+//                    return "";
+//                case 2:
+//                    return "";
+//                case 3:
+//                    return "";
+//            }
+//            return null;
+//        }
     }
 }

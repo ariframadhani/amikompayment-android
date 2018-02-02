@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_deposit"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bgDashboard"
+    tools:context="com.example.fsd.amikompayment.Deposit">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_header"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:id="@+id/toolbarDeposit" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbarDeposit"
+            android:layout_marginTop="30dp"
+            android:text="Masukan Nominal Deposit"
+            android:textColor="@color/textDashboard"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_marginBottom="20dp"
+            android:textStyle="bold"
+            android:id="@+id/tvHeaderDeposit" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvHeaderDeposit"
+        android:paddingLeft="35dp"
+        android:paddingRight="50dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/formNominalDeposit">
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/money_icon"
+            />
+
+        <EditText
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Nominal Deposit"
+            style="@style/Base.Widget.AppCompat.EditText"
+            android:inputType="number"
+            android:id="@+id/etnominalDeposit"
+            android:backgroundTint="@color/textDashboard"
+            android:maxLength="7"
+            android:layout_marginLeft="10dp"
+            android:textColorHint="@color/textDashboard"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/formNominalDeposit"
+        android:paddingLeft="35dp"
+        android:paddingRight="50dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/formPasswordDeposit">
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/password_logo"
+            />
+
+
+        <EditText
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Password"
+            style="@style/Base.Widget.AppCompat.EditText"
+            android:inputType="textPassword"
+            android:textColorHint="@color/textDashboard"
+            android:textColor="@color/colorPrimaryDark"
+            android:backgroundTint="@color/textDashboard"
+            android:id="@+id/etpasswordDeposit"
+            android:layout_marginLeft="10dp"
+            android:textSize="14dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="35dp"
+        android:paddingRight="50dp"
+        android:layout_below="@id/formPasswordDeposit"
+        android:id="@+id/linearLayout2">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/formNominalDeposit"
+            android:background="@drawable/btn_ripple_log"
+            android:id="@+id/btnProsesDeposit"
+            android:text="Proses"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:id="@+id/progressBar2" />
+
+
+</RelativeLayout>

@@ -55,9 +55,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             case R.id.btnLogin:
 
                 progressBar.setVisibility(View.VISIBLE);
-//                Intent i = new Intent(getApplicationContext(), Dashboard.class);
-//                startActivity(i);
-//                finish();
 
                 final String username = user.getText().toString().trim();
                 final String password = pass.getText().toString().trim();
@@ -102,7 +99,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         }else {
                             btnLogin.setEnabled(true);
                             btnRegister.setEnabled(true);
-                            Toast.makeText(getApplicationContext(), "Authentifikasi gagal", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Username dan password salah", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -119,35 +116,3 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 });
     }
 }
-
-
-
-
-//        new Callback<ResponseBody>() {
-//@Override
-//public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//        progressBar.setVisibility(View.INVISIBLE);
-//        Log.d("response", "code = " + response.toString());
-//
-//        if (response.isSuccessful()){
-//        Log.d("response", "code = " + response.body().toString());
-//        Intent i = new Intent(getApplicationContext(), Dashboard.class);
-//        startActivity(i);
-//        finish();
-//        }else {
-//        btnLogin.setEnabled(true);
-//        btnRegister.setEnabled(true);
-//        Toast.makeText(getApplicationContext(), "Authentifikasi gagal", Toast.LENGTH_SHORT).show();
-//        }
-//        }
-//
-//@Override
-//public void onFailure(Call<ResponseBody> call, Throwable t) {
-//        progressBar.setVisibility(View.INVISIBLE);
-//        btnLogin.setEnabled(true);
-//        btnRegister.setEnabled(true);
-//
-//        Toast.makeText(getApplicationContext(), "Couldn't reach the server", Toast.LENGTH_SHORT).show();
-//        Log.e("debug", "onFailure: ERROR > " + t.toString());
-//        }
-

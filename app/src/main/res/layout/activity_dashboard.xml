@@ -36,7 +36,6 @@
                     android:layout_height="30dp"
                     android:src="@drawable/logo"/>
 
-
             </LinearLayout>
 
         </android.support.v7.widget.Toolbar>
