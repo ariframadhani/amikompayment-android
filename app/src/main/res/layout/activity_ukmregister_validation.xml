@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_ukmregister_validation"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bgDashboard"
+    tools:context="com.example.fsd.amikompayment.UKMRegisterValidation">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_header"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginBottom="30dp"
+        android:id="@+id/toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:id="@id/headerText"
+        android:textSize="16dp"
+        android:textColor="@color/textDashboard"
+        android:text="Pembayaran UKM Register"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginBottom="30dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/body"
+        android:layout_below="@id/headerText"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/info_validasi"
+            android:layout_marginBottom="40dp"
+            >
+
+            <TableRow android:layout_marginBottom="20dp">
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textDashboard"
+                    android:text="Nama Acara:"
+                    android:layout_marginRight="20dp"/>
+
+                <TextView android:id="@+id/namaAcara"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_weight="1"/>
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="20dp">
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textDashboard"
+                    android:text="Institusi:"
+                    android:layout_marginRight="20dp"/>
+
+                <TextView android:id="@+id/institusi"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_weight="1"/>
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="20dp">
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textDashboard"
+                    android:text="Token:"
+                    android:layout_marginRight="20dp"/>
+
+                <TextView android:id="@+id/token"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_weight="1"/>
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="20dp">
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textDashboard"
+                    android:text="Harga:"
+                    android:layout_marginRight="20dp"/>
+
+                <TextView android:id="@+id/harga"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_weight="1"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textDashboard"
+                    android:text="Saldo Anda:"
+                    android:layout_marginRight="20dp"/>
+
+                <TextView android:id="@+id/saldo_user"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_weight="1"/>
+            </TableRow>
+
+
+        </TableLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/info_validasi"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/formPassword">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/password_logo"
+                android:id="@+id/imageView2" />
+
+
+            <EditText
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Password"
+                style="@style/Base.Widget.AppCompat.EditText"
+                android:inputType="textPassword"
+                android:textColorHint="@color/textDashboard"
+                android:textColor="@color/colorPrimaryDark"
+                android:backgroundTint="@color/textDashboard"
+                android:id="@+id/etpasswordDeposit"
+                android:layout_marginLeft="10dp"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/formPassword"
+            android:id="@+id/layoutProses"
+            android:layout_marginBottom="25dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/formNominalDeposit"
+                android:background="@drawable/btn_ripple_log"
+                android:id="@+id/btnProsesDeposit"
+                android:text="Proses"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layoutProses"
+            android:id="@+id/info"
+            android:textColor="#212121"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:textSize="13dp"
+            android:layout_marginBottom="10dp"
+            android:text="(i) Masukan password anda untuk menyelesaikan pembayaran"/>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/info"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/progressBar2" />
+    </RelativeLayout>
+</RelativeLayout>
