@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pembayaran_ukmregister"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bgDashboard"
+    tools:context="com.example.fsd.amikompayment.PembayaranUKMRegister">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_header"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginBottom="30dp"
+        android:id="@+id/toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:text="Pembayaran UKM Register"
+        android:textColor="@color/textDashboard"
+        android:textAlignment="center"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:id="@+id/headerText"
+        android:layout_marginBottom="30dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:layout_below="@id/headerText">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textDashboard"
+            android:text="Masukan Nomor Token Register"
+            android:textStyle="bold"
+            android:id="@+id/headerText2"
+            android:layout_marginBottom="40dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/headerText2"
+            android:id="@+id/formToken"
+            android:layout_marginBottom="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textv1"
+                android:textColor="@color/textDashboard"
+                android:text="Kode Token:"
+                android:layout_marginRight="10dp"/>
+
+            <EditText
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Input token"
+                android:id="@+id/inputToken"
+                android:backgroundTint="@color/textDashboard"
+                android:maxLength="7"
+                android:maxLines="1"
+                android:lines="1"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:layout_marginLeft="10dp"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/formToken"
+            android:background="@drawable/btn_ripple_log"
+            android:text="Proses"
+            android:id="@+id/btnProses"
+            android:layout_marginBottom="30dp"
+            />
+
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnProses"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/progressBar2" />
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

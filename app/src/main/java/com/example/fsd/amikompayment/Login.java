@@ -90,6 +90,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putString("api_token", response.body().getData().getApi_token());
+                            editor.putString("saldo_user", response.body().getData().getSaldo().toString());
                             editor.commit();
 
                             Intent i = new Intent(getApplicationContext(), Dashboard.class);

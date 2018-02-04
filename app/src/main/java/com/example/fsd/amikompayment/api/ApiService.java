@@ -1,5 +1,6 @@
 package com.example.fsd.amikompayment.api;
 
+import com.example.fsd.amikompayment.acara.Acara;
 import com.example.fsd.amikompayment.deposit.Deposit;
 import com.example.fsd.amikompayment.user.Data;
 import com.example.fsd.amikompayment.user.User;
@@ -46,5 +47,17 @@ public interface ApiService {
     Call<Deposit> sendDeposit (@Header("Authorization") String token,
                                @Field("nominal") Integer nominal,
                                @Field("password") String password);
+
+    @Headers("Accept: application/json")
+    @GET("acara/{kategori}/{token}")
+    Call<Acara> getAcara (@Path("kategori") String kategori,
+                          @Path("token") String token_acara);
+
+    @Headers("Accept: application/json")
+    @POST("transact-ukm")
+    @FormUrlEncoded
+    Call<ResponseBody> sendTransactUKM (@Header("Authorization") String api_token,
+                                        @Field("token") String token_acara,
+                                        @Field("password") String password);
 
 }
