@@ -28,7 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Converter;
 import retrofit2.Response;
 
-public class UKMRegisterValidation extends AppCompatActivity implements View.OnClickListener{
+public class UKMTokenValidation extends AppCompatActivity implements View.OnClickListener{
     String TOKEN, bearer;
     ApiService mApiService;
     SharedPreferences pref;
@@ -36,9 +36,9 @@ public class UKMRegisterValidation extends AppCompatActivity implements View.OnC
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.namaAcara) TextView nama_acara;
     @BindView(R.id.institusi) TextView institusi;
+    @BindView(R.id.kategori) TextView kategori;
     @BindView(R.id.token) TextView token;
     @BindView(R.id.harga) TextView harga;
-//    @BindView(R.id.saldo_user) TextView saldo_user;
     @BindView(R.id.eTPassword) EditText password;
     @BindView(R.id.btnProses) Button btnProses;
     @BindView(R.id.progressBar2) ProgressBar progressBar;
@@ -46,7 +46,7 @@ public class UKMRegisterValidation extends AppCompatActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ukmregister_validation);
+        setContentView(R.layout.activity_ukm_token_validation);
         ButterKnife.bind(this);
 
         mApiService = BaseApi.getApiService();
@@ -71,9 +71,9 @@ public class UKMRegisterValidation extends AppCompatActivity implements View.OnC
         Bundle bundle = getIntent().getExtras();
         nama_acara.setText(bundle.getString("nama_acara"));
         institusi.setText(bundle.getString("institusi"));
+        kategori.setText(bundle.getString("kategori_acara"));
         token.setText(bundle.getString("token_acara"));
         harga.setText("Rp "+bundle.getString("harga_acara"));
-//        saldo_user.setText("Rp "+pref.getString("saldo_user", null));
     }
 
     @Override
@@ -91,7 +91,7 @@ public class UKMRegisterValidation extends AppCompatActivity implements View.OnC
         }
     }
 
-    public void prosesTransaksi(String auth, String token_acara, String password ){
+    private void prosesTransaksi(String auth, String token_acara, String password ){
         mApiService.sendTransactUKM(auth, token_acara, password)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override

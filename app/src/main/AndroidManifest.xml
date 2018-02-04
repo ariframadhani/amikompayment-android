@@ -40,12 +40,12 @@
             android:parentActivityName=".Pembayaran"
             android:theme="@style/onToolbar" />
 
-        <activity android:name=".PembayaranUKMRegister"
+        <activity android:name=".PembayaranUKMToken"
             android:parentActivityName=".PembayaranUKM"
             android:theme="@style/onToolbar"/>
 
-        <activity android:name=".UKMRegisterValidation"
-            android:parentActivityName=".PembayaranUKMRegister"
+        <activity android:name=".UKMTokenValidation"
+            android:parentActivityName=".PembayaranUKMToken"
             android:theme="@style/onToolbar"/>
     </application>
 

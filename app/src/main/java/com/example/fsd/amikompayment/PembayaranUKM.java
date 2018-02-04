@@ -1,7 +1,6 @@
 package com.example.fsd.amikompayment;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -36,13 +35,15 @@ public class PembayaranUKM extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnRegister:
-                Intent a = new Intent(getApplicationContext(), PembayaranUKMRegister.class);
+                Intent a = new Intent(getApplicationContext(), PembayaranUKMToken.class);
+                a.putExtra("id_menu", 1);  // REGISTER UKM
                 startActivity(a);
                 break;
 
             case R.id.btnEvent:
-//                Intent b = new Intent(getApplicationContext(), PembayaranUKMEvent.class);
-//                startActivity(b);
+                Intent b = new Intent(getApplicationContext(), PembayaranUKMToken.class);
+                b.putExtra("id_menu", 2);  // EVENT UKM
+                startActivity(b);
 
                 break;
         }

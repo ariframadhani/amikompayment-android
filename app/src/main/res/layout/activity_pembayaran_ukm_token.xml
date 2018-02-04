@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     android:background="@color/bgDashboard"
-    tools:context="com.example.fsd.amikompayment.PembayaranUKMRegister">
+    tools:context="com.example.fsd.amikompayment.PembayaranUKMToken">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -24,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
-        android:text="Pembayaran UKM Register"
         android:textColor="@color/textDashboard"
         android:textAlignment="center"
         android:textSize="16dp"
@@ -43,7 +42,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/textDashboard"
-            android:text="Masukan Nomor Token Register"
             android:textStyle="bold"
             android:id="@+id/headerText2"
             android:layout_marginBottom="40dp"/>
