@@ -30,7 +30,7 @@
         android:textSize="16dp"
         android:textStyle="bold"
         android:id="@+id/headerText"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="30dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -68,11 +68,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Input token"
-                android:id="@+id/etnominalDeposit"
+                android:id="@+id/inputToken"
                 android:backgroundTint="@color/textDashboard"
                 android:maxLength="7"
+                android:maxLines="1"
+                android:lines="1"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
                 android:layout_marginLeft="10dp"
-                android:textColorHint="@color/textDashboard"
+                android:textColorHint="@color/colorPrimaryDark"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="14dp"/>
 
@@ -90,7 +94,6 @@
 
 
         <ProgressBar
-            style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnProses"

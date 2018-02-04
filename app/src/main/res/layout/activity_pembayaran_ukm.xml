@@ -56,7 +56,7 @@
                 android:src="@drawable/ukm_register"
                 android:background="@drawable/btn_ripple_circle"
                 android:padding="10dp"
-                android:id="@+id/btnMenuPembayaran" />
+                android:id="@+id/btnRegister" />
 
         </LinearLayout>
 
@@ -89,7 +89,7 @@
                 android:src="@drawable/ukm_event"
                 android:background="@drawable/btn_ripple_circle"
                 android:padding="10dp"
-                android:id="@+id/btnMenuDeposit" />
+                android:id="@+id/btnEvent" />
 
         </LinearLayout>
 

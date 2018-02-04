@@ -51,8 +51,12 @@
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textDashboard"
-                    android:text="Nama Acara:"
+                    android:text="Nama Acara"
                     android:layout_marginRight="20dp"/>
+
+                <TextView android:text=":"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginRight="10dp"/>
 
                 <TextView android:id="@+id/namaAcara"
                     android:textColor="@color/colorPrimaryDark"
@@ -66,6 +70,9 @@
                     android:text="Institusi:"
                     android:layout_marginRight="20dp"/>
 
+                <TextView android:text=":"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginRight="10dp"/>
                 <TextView android:id="@+id/institusi"
                     android:textColor="@color/colorPrimaryDark"
                     android:layout_weight="1"/>
@@ -75,8 +82,12 @@
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textDashboard"
-                    android:text="Token:"
+                    android:text="Token"
                     android:layout_marginRight="20dp"/>
+
+                <TextView android:text=":"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorPrimaryDark"/>
 
                 <TextView android:id="@+id/token"
                     android:textColor="@color/colorPrimaryDark"
@@ -87,25 +98,33 @@
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textDashboard"
-                    android:text="Harga:"
+                    android:text="Harga"
                     android:layout_marginRight="20dp"/>
+
+                <TextView android:text=":"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorPrimaryDark"/>
 
                 <TextView android:id="@+id/harga"
                     android:textColor="@color/colorPrimaryDark"
                     android:layout_weight="1"/>
             </TableRow>
 
-            <TableRow>
-                <TextView android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/textDashboard"
-                    android:text="Saldo Anda:"
-                    android:layout_marginRight="20dp"/>
+            <!--<TableRow>-->
+                <!--<TextView android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="@color/textDashboard"-->
+                    <!--android:text="Saldo Anda"-->
+                    <!--android:layout_marginRight="20dp"/>-->
 
-                <TextView android:id="@+id/saldo_user"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:layout_weight="1"/>
-            </TableRow>
+                <!--<TextView android:text=":"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:textColor="@color/colorPrimaryDark"/>-->
+
+                <!--<TextView android:id="@+id/saldo_user"-->
+                    <!--android:textColor="@color/colorPrimaryDark"-->
+                    <!--android:layout_weight="1"/>-->
+            <!--</TableRow>-->
 
 
         </TableLayout>
@@ -134,7 +153,7 @@
                 android:textColorHint="@color/textDashboard"
                 android:textColor="@color/colorPrimaryDark"
                 android:backgroundTint="@color/textDashboard"
-                android:id="@+id/etpasswordDeposit"
+                android:id="@+id/eTPassword"
                 android:layout_marginLeft="10dp"
                 android:textSize="14dp"/>
 
@@ -145,14 +164,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/formPassword"
             android:id="@+id/layoutProses"
-            android:layout_marginBottom="25dp">
+            android:layout_marginBottom="15dp">
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/formNominalDeposit"
                 android:background="@drawable/btn_ripple_log"
-                android:id="@+id/btnProsesDeposit"
+                android:id="@+id/btnProses"
                 android:text="Proses"/>
 
         </LinearLayout>
@@ -166,7 +185,7 @@
             android:textAlignment="center"
             android:textStyle="italic"
             android:textSize="13dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:text="(i) Masukan password anda untuk menyelesaikan pembayaran"/>
 
         <ProgressBar
