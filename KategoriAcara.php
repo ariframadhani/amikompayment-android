@@ -15,6 +15,6 @@ class KategoriAcara extends Model
 
   public function acara()
   {
-    return $this->hasMany(Acara::class, 'nama');
+    return $this->hasMany(Acara::class, 'kategori_acara', 'nama');
   }
 }

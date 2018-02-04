@@ -13,9 +13,9 @@ class Acara extends Model
     return $this->belongsTo(User::class, 'penyelengara', 'username');
   }
 
-  public function kategori_acara()
+  public function kategori()
   {
-    return $this->belongsTo(KategoriAcara::class, 'nama');
+    return $this->belongsTo(KategoriAcara::class, 'kategori_acara', 'nama');
   }
 
   public function transact_ukm()
