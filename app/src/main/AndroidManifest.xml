@@ -39,14 +39,20 @@
             android:name=".PembayaranUKM"
             android:parentActivityName=".Pembayaran"
             android:theme="@style/onToolbar" />
-
-        <activity android:name=".PembayaranUKMToken"
+        <activity
+            android:name=".PembayaranUKMToken"
             android:parentActivityName=".PembayaranUKM"
-            android:theme="@style/onToolbar"/>
-
-        <activity android:name=".UKMTokenValidation"
-            android:parentActivityName=".PembayaranUKMToken"
-            android:theme="@style/onToolbar"/>
+            android:theme="@style/onToolbar" />
+        <activity
+            android:name=".UKMTokenValidation"
+            android:theme="@style/onToolbar" />
+        <activity
+            android:name=".PembayaranBarangToken"
+            android:theme="@style/onToolbar" />
+        <activity
+            android:name=".BarangTokenValidation"
+            android:theme="@style/onToolbar" />
+        <activity android:name=".PembayaranSuccess"></activity>
     </application>
 
 </manifest>

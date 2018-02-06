@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ import com.example.fsd.amikompayment.transact.ukm.Errors;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,50 +31,34 @@ import retrofit2.Callback;
 import retrofit2.Converter;
 import retrofit2.Response;
 
-public class UKMTokenValidation extends AppCompatActivity implements View.OnClickListener{
-    String TOKEN, bearer;
+public class BarangTokenValidation extends AppCompatActivity implements View.OnClickListener{
     ApiService mApiService;
-    SharedPreferences pref;
+    Bundle data;
+    String TOKEN, auth;
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.namaAcara) TextView nama_acara;
-    @BindView(R.id.institusi) TextView institusi;
-    @BindView(R.id.kategori) TextView kategori;
-    @BindView(R.id.token) TextView token;
-    @BindView(R.id.harga) TextView harga;
-    @BindView(R.id.eTPassword) EditText password;
+    @BindView(R.id.invoice) TextView invoiceBarang;
+    @BindView(R.id.tempat_belanja) TextView tempatBelanja;
+    @BindView(R.id.totalHarga) TextView totalHarga;
+    @BindView(R.id.detailBelanja) TableLayout tableDetailBelanja;
+
     @BindView(R.id.btnProses) Button btnProses;
+    @BindView(R.id.eTPassword) EditText password;
     @BindView(R.id.progressBar2) ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ukm_token_validation);
+        setContentView(R.layout.activity_barang_token_validation);
+
         ButterKnife.bind(this);
-
         mApiService = BaseApi.getApiService();
+
         progressBar.setVisibility(View.INVISIBLE);
-
-        toolbar.setTitle("Validasi Token Pembayaran");
-
-        pref = getSharedPreferences("MyPref", 0);
-        TOKEN = pref.getString("api_token", null);
-        bearer = "Bearer " + TOKEN;
-
-        getInfoToken();
+        getInfoDetail();
 
         btnProses.setOnClickListener(this);
 
-    }
-
-    // Register UKM
-    public void getInfoToken(){
-        Bundle bundle = getIntent().getExtras();
-        nama_acara.setText(bundle.getString("nama_acara"));
-        institusi.setText(bundle.getString("institusi"));
-        kategori.setText(bundle.getString("kategori_acara"));
-        token.setText(bundle.getString("token_acara"));
-        harga.setText("Rp "+bundle.getString("harga_acara"));
     }
 
     @Override
@@ -81,33 +68,49 @@ public class UKMTokenValidation extends AppCompatActivity implements View.OnClic
                 progressBar.setVisibility(View.VISIBLE);
                 btnProses.setEnabled(false);
 
-                final String token_acara = token.getText().toString();
-                final String password_user = password.getText().toString();
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+                TOKEN = pref.getString("api_token", null);
+                auth = "Bearer " + TOKEN;
+                final String getPassword = password.getText().toString();
 
-                prosesTransaksi(bearer, token_acara, password_user);
+                if (getPassword.equals("")){
+                    Toast.makeText(getApplicationContext(),"Password belum diisi", Toast.LENGTH_SHORT).show();
+                }
+
+                doTransaction(auth, data.getString("invoice"), getPassword);
                 break;
         }
     }
 
-    private void prosesTransaksi(String auth, String token_acara, String password ){
-        mApiService.sendTransactUKM(auth, token_acara, password)
+    private void getInfoDetail(){
+        data = getIntent().getExtras();
+
+        invoiceBarang.setText(data.getString("invoice"));
+        tempatBelanja.setText(data.getString("tempat_belanja"));
+        totalHarga.setText("Rp "+data.getString("total_harga"));
+    }
+
+    private void doTransaction(String auth, String invoice, String password){
+        mApiService.sendTransactBarang(auth, invoice, password)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        progressBar.setVisibility(View.INVISIBLE);
                         if (response.isSuccessful()){
+                            btnProses.setEnabled(true);
+                            progressBar.setVisibility(View.INVISIBLE);
 
                             Intent i = new Intent(getApplicationContext(), PembayaranSuccess.class);
                             startActivity(i);
                             finish();
 
                         }else{
-
                             btnProses.setEnabled(true);
-                            Converter<ResponseBody, Errors> errorsConverter =
+                            progressBar.setVisibility(View.INVISIBLE);
+
+                            Converter<ResponseBody, com.example.fsd.amikompayment.transact.barang.Errors> errorsConverter =
                                     RetrofitClient.retrofit.responseBodyConverter(Errors.class, new Annotation[0]);
                             try{
-                                Errors errors = errorsConverter.convert(response.errorBody());
+                                com.example.fsd.amikompayment.transact.barang.Errors errors = errorsConverter.convert(response.errorBody());
 
                                 if (errors.getInfo() != null){
                                     String errInfo = errors.getInfo().toString();
@@ -125,14 +128,13 @@ public class UKMTokenValidation extends AppCompatActivity implements View.OnClic
                             }catch (IOException e){
                                 e.printStackTrace();
                             }
-
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        btnProses.setEnabled(true);
                         progressBar.setVisibility(View.INVISIBLE);
+                        btnProses.setEnabled(true);
                         Toast.makeText(getApplicationContext(), "Couldn't reach the server", Toast.LENGTH_SHORT).show();
 
                     }

@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 public class Pembayaran extends AppCompatActivity implements View.OnClickListener{
@@ -38,6 +37,16 @@ public class Pembayaran extends AppCompatActivity implements View.OnClickListene
             case R.id.btnMenuPembayaranukm:
                 Intent a = new Intent(getApplicationContext(), PembayaranUKM.class);
                 startActivity(a);
+                break;
+            case R.id.btnMenuPembayarancm:
+                Intent b = new Intent(getApplicationContext(), PembayaranBarangToken.class);
+                b.putExtra("idMenu", 1);
+                startActivity(b);
+                break;
+            case R.id.btnMenuPembayarankantin:
+                Intent c = new Intent(getApplicationContext(), PembayaranBarangToken.class);
+                c.putExtra("idMenu", 2);
+                startActivity(c);
                 break;
         }
     }

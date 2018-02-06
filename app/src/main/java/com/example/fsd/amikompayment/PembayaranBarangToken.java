@@ -13,9 +13,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fsd.amikompayment.acara.Acara;
 import com.example.fsd.amikompayment.api.ApiService;
 import com.example.fsd.amikompayment.api.BaseApi;
+import com.example.fsd.amikompayment.detail_barang.DetailBarang;
+import com.example.fsd.amikompayment.detail_barang.DetailBelanja;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,48 +27,53 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PembayaranUKMToken extends AppCompatActivity implements View.OnClickListener {
+public class PembayaranBarangToken extends AppCompatActivity implements View.OnClickListener {
     ApiService mApiService;
     String headerHead, textHeader, token, bearer;
     Integer idMenu;
     SharedPreferences pref;
 
-    @BindView(R.id.btnProses) Button btnProses;
-    @BindView(R.id.inputToken) EditText inputToken;
-    @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.progressBar2) ProgressBar progressBar;
-    @BindView(R.id.headerText) TextView header;
+    @BindView(R.id.btnProses)
+    Button btnProses;
+    @BindView(R.id.inputToken)
+    EditText inputToken;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.progressBar2)
+    ProgressBar progressBar;
+    @BindView(R.id.headerText)
+    TextView header;
     @BindView(R.id.headerText2) TextView header2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pembayaran_ukm_token);
+        setContentView(R.layout.activity_pembayaran_barang);
 
         ButterKnife.bind(this);
         mApiService = BaseApi.getApiService();
         progressBar.setVisibility(View.INVISIBLE);
 
         Bundle bundle = getIntent().getExtras();
-        idMenu = bundle.getInt("id_menu");
+        idMenu = bundle.getInt("idMenu");
+
+        if (idMenu == 1){
+            customLayout("Citra Mart");
+        }else {
+            customLayout("Kantin");
+        }
 
         pref = getSharedPreferences("MyPref", 0);
         bearer = "Bearer " + pref.getString("api_token", null);;
 
-        if (idMenu == 1){
-            customLayout("Register");
-        }else{
-            customLayout("Event");
-        }
-
         btnProses.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnProses:
-
                 token = inputToken.getText().toString();
 
                 if (token.equals("")){
@@ -74,49 +83,48 @@ public class PembayaranUKMToken extends AppCompatActivity implements View.OnClic
                     progressBar.setVisibility(View.VISIBLE);
 
                     if (idMenu == 1){
-                        getAcara(bearer, "register", token);
-                    }else{
-                        getAcara(bearer, "event", token);
+                        getDetail(bearer, "citra-mart", token);
+                    }else {
+                        getDetail(bearer, "kantin", token);
                     }
 
                     btnProses.setEnabled(true);
                 }
-
-                break;
+            break;
         }
     }
 
-    public void getAcara(String auth, String kategori, String token){
-        mApiService.getAcara(auth, kategori, token)
-                .enqueue(new Callback<Acara>() {
+    public void getDetail(String auth, String kategori, String token){
+        mApiService.getDetailBarang(auth, kategori, token)
+                .enqueue(new Callback<DetailBarang>() {
                     @Override
-                    public void onResponse(Call<Acara> call, Response<Acara> response) {
-                        progressBar.setVisibility(View.INVISIBLE);
+                    public void onResponse(Call<DetailBarang> call, Response<DetailBarang> response) {
                         if (response.isSuccessful()){
 
-                            Intent i = new Intent(getApplicationContext(), UKMTokenValidation.class);
-                            i.putExtra("nama_acara", response.body().getData().getNamaAcara());
-                            i.putExtra("institusi", response.body().getData().getPenyelengara());
-                            i.putExtra("kategori_acara", response.body().getData().getKategoriAcara());
-                            i.putExtra("token_acara", response.body().getData().getTokenAcara());
-                            i.putExtra("harga_acara", response.body().getData().getHargaAcara().toString());
-                            startActivity(i);
+                            progressBar.setVisibility(View.INVISIBLE);
+
+                            Intent a = new Intent(getApplicationContext(), BarangTokenValidation.class);
+
+                            a.putExtra("invoice", response.body().getData().getInvoiceTransact());
+                            a.putExtra("tempat_belanja", response.body().getData().getUsername());
+                            a.putExtra("total_harga", response.body().getData().getTotalHarga().toString());
+
+                            startActivity(a);
                         }else{
                             switch (response.code()){
                                 case 401:
                                     Toast.makeText(getApplicationContext(), "Please relogin to get the information", Toast.LENGTH_SHORT).show();
                                     break;
                                 case 404:
-                                    Toast.makeText(getApplicationContext(), "Token tidak ditemukan", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Nomor pembayaran tidak ditemukan", Toast.LENGTH_SHORT).show();
                                     break;
-
                             }
                         }
+
                     }
 
                     @Override
-                    public void onFailure(Call<Acara> call, Throwable t) {
-                        btnProses.setEnabled(true);
+                    public void onFailure(Call<DetailBarang> call, Throwable t) {
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(getApplicationContext(), "Couldn't reach the server", Toast.LENGTH_SHORT).show();
                     }
@@ -124,14 +132,13 @@ public class PembayaranUKMToken extends AppCompatActivity implements View.OnClic
     }
 
     public void customLayout(String menu){
-        toolbar.setTitle("Pembayaran UKM "+menu);
+        toolbar.setTitle("Pembayaran "+menu);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        headerHead = "Pembayaran UKM "+menu;
-        textHeader = "Masukan Nomor Token "+menu;
+        headerHead = "Pembayaran "+menu;
+        textHeader = "Masukan Nomor Pembayaran "+menu;
         header.setText(headerHead);
         header2.setText(textHeader);
     }
-
 }
