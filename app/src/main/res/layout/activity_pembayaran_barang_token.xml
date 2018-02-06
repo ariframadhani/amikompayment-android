@@ -90,11 +90,31 @@
             android:layout_marginBottom="30dp"
             />
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_below="@id/btnProses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tokenCollection"
+            android:layout_marginBottom="30dp">
+
+            <TextView
+                android:id="@+id/token1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textDashboard"
+                android:layout_marginRight="20dp"/>
+            <TextView
+                android:id="@+id/deskripsi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textDashboard" />
+        </LinearLayout>
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/btnProses"
+            android:layout_below="@id/tokenCollection"
             android:layout_centerHorizontal="true"
             android:id="@+id/progressBar2" />
 

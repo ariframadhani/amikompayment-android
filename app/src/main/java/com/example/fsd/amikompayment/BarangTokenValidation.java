@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.example.fsd.amikompayment.api.ApiService;
 import com.example.fsd.amikompayment.api.BaseApi;
 import com.example.fsd.amikompayment.api.RetrofitClient;
-import com.example.fsd.amikompayment.transact.ukm.Errors;
+import com.example.fsd.amikompayment.transact.barang.Errors;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -73,10 +73,6 @@ public class BarangTokenValidation extends AppCompatActivity implements View.OnC
                 auth = "Bearer " + TOKEN;
                 final String getPassword = password.getText().toString();
 
-                if (getPassword.equals("")){
-                    Toast.makeText(getApplicationContext(),"Password belum diisi", Toast.LENGTH_SHORT).show();
-                }
-
                 doTransaction(auth, data.getString("invoice"), getPassword);
                 break;
         }
@@ -107,10 +103,10 @@ public class BarangTokenValidation extends AppCompatActivity implements View.OnC
                             btnProses.setEnabled(true);
                             progressBar.setVisibility(View.INVISIBLE);
 
-                            Converter<ResponseBody, com.example.fsd.amikompayment.transact.barang.Errors> errorsConverter =
+                            Converter<ResponseBody, Errors> errorsConverter =
                                     RetrofitClient.retrofit.responseBodyConverter(Errors.class, new Annotation[0]);
                             try{
-                                com.example.fsd.amikompayment.transact.barang.Errors errors = errorsConverter.convert(response.errorBody());
+                                Errors errors = errorsConverter.convert(response.errorBody());
 
                                 if (errors.getInfo() != null){
                                     String errInfo = errors.getInfo().toString();

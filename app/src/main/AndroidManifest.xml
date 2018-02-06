@@ -47,7 +47,7 @@
             android:name=".UKMTokenValidation"
             android:theme="@style/onToolbar" />
         <activity
-            android:name=".PembayaranBarangToken"
+            android:name=".PembayaranBarangToken" android:parentActivityName=".Pembayaran"
             android:theme="@style/onToolbar" />
         <activity
             android:name=".BarangTokenValidation"

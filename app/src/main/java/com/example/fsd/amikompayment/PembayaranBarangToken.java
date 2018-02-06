@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,10 +15,6 @@ import android.widget.Toast;
 import com.example.fsd.amikompayment.api.ApiService;
 import com.example.fsd.amikompayment.api.BaseApi;
 import com.example.fsd.amikompayment.detail_barang.DetailBarang;
-import com.example.fsd.amikompayment.detail_barang.DetailBelanja;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,10 +40,13 @@ public class PembayaranBarangToken extends AppCompatActivity implements View.OnC
     TextView header;
     @BindView(R.id.headerText2) TextView header2;
 
+    @BindView(R.id.token1) TextView token1;
+    @BindView(R.id.deskripsi) TextView desk;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pembayaran_barang);
+        setContentView(R.layout.activity_pembayaran_barang_token);
 
         ButterKnife.bind(this);
         mApiService = BaseApi.getApiService();
@@ -58,9 +56,13 @@ public class PembayaranBarangToken extends AppCompatActivity implements View.OnC
         idMenu = bundle.getInt("idMenu");
 
         if (idMenu == 1){
+            token1.setText("KZfHUN");
+            desk.setText("Contoh Token");
             customLayout("Citra Mart");
         }else {
             customLayout("Kantin");
+            token1.setText("Z76jq7:");
+            desk.setText("Contoh Token");
         }
 
         pref = getSharedPreferences("MyPref", 0);

@@ -35,6 +35,8 @@ public class PembayaranUKMToken extends AppCompatActivity implements View.OnClic
     @BindView(R.id.progressBar2) ProgressBar progressBar;
     @BindView(R.id.headerText) TextView header;
     @BindView(R.id.headerText2) TextView header2;
+    @BindView(R.id.token1) TextView token1;
+    @BindView(R.id.deskripsi) TextView desk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +54,13 @@ public class PembayaranUKMToken extends AppCompatActivity implements View.OnClic
         bearer = "Bearer " + pref.getString("api_token", null);;
 
         if (idMenu == 1){
+            token1.setText("rozsER:");
+            desk.setText("Registrasi AMCC");
             customLayout("Register");
         }else{
             customLayout("Event");
+            token1.setText("IiFFLe:");
+            desk.setText("Seminar Nasional Web Developer");
         }
 
         btnProses.setOnClickListener(this);
