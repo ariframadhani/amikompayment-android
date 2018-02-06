@@ -76,6 +76,9 @@ public class Profile extends Fragment implements View.OnClickListener{
                             saldo.setText("Rp "+response.body().getData().getSaldo().toString());
                             phone.setText(response.body().getData().getPhone());
 
+                        }else{
+                            Toast.makeText(getContext(), "Please relogin to get your profile data", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
 

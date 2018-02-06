@@ -97,9 +97,8 @@ public class Deposit extends AppCompatActivity implements View.OnClickListener{
 
                     progressBar.setVisibility(View.INVISIBLE);
                     Log.d("response", "deposit body = " + response.body().getData().toString());
-                    Toast.makeText(getApplicationContext(), "Deposit sukses, please check your profile", Toast.LENGTH_SHORT).show();
 
-                    Intent i = new Intent(getApplicationContext(), Dashboard.class);
+                    Intent i = new Intent(getApplicationContext(), PembayaranSuccess.class);
                     startActivity(i);
                     finish();
                 }else{

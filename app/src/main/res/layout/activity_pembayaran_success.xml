@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pembayaran_success"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgDashboard"
+    tools:context="com.example.fsd.amikompayment.PembayaranSuccess">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_header"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_marginBottom="30dp"
+        android:id="@+id/toolbar" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Transaksi Sukses"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_below="@id/toolbar"
+        android:id="@+id/body"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/payment_done"
+            android:layout_below="@+id/toolbar"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/imageView" />
+
+        <TextView
+            android:layout_below="@id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:id="@id/textView"
+            android:textSize="13dp"
+            android:layout_marginBottom="30dp"
+            android:text="Transaksi anda telah sukses. \nSilahkan cek history untuk melihat detail transaksi"
+            android:textAlignment="center"
+            android:textColor="@color/textDashboard"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_ripple_log"
+            android:text="back to homepage"
+            android:id="@+id/btnbacktohome"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
