@@ -15,8 +15,13 @@ class TransactBarang extends Model
     return $this->belongsTo(User::class, 'username', 'username');
   }
 
-  public function detail_transact_barang()
+  public function detail_transact()
   {
     return $this->hasMany(DetailTransactBarang::class, 'invoice', 'invoice');
+  }
+
+  public function payment_barang()
+  {
+    return $this->hasMany(PaymentBarang::class, 'invoice_tr_barang', 'invoice');
   }
 }
