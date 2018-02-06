@@ -1,5 +1,5 @@
 # Amikom Payment
-Amikom Payment Mobile App with API 
+Amikom Payment Mobile App with API
 <hr>
 
-Please check our branch for versions
+Models, Controllers, Resources branch are API setup and logic for json request.
